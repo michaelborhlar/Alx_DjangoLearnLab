@@ -1,8 +1,10 @@
 # LibraryProject
 
-This is the initial setup of a Django project for learning purposes as part of the Alx_DjangoLearnLab.
+This is a basic Django project created as part of the Alx_DjangoLearnLab.
 
-## How to run
+## To run the project:
 
-```bash
 python manage.py runserver
+
+
+Visit: http://127.0.0.1:8000/
