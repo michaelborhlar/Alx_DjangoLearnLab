@@ -1,8 +1,7 @@
->>> book
+# Retrieve the Book instance
+
+```python
+from bookshelf.models import Book
+Book.objects.get(title="1984")
+# Output:
 <Book: 1984>
->>> book.title
-'1984'
->>> book.author
-'George Orwell'
->>> book.publication_year
-'1949'
