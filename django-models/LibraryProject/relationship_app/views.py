@@ -11,13 +11,25 @@ from django.contrib.auth.decorators import user_passes_test, login_required
 from django.shortcuts import render
 from .models import UserProfile
 
-def is_admin(user):
-    return hasattr(user, 'userprofile') and user.userprofile.role == 'Admin'
 
-@user_passes_test(is_admin)
 @login_required
 def admin_view(request):
     return render(request, 'admin_view.html')
+
+@login_required
+def Admin(request):
+    # This view can only be accessed by authenticated users
+    return render(request, 'admin_view.html')
+
+@login_required
+def Librarian(request):
+    # This view can only be accessed by authenticated users
+    return render(request, 'librarian_view.html')
+
+@login_required
+def Member(request):
+    # This view can only be accessed by authenticated users
+    return render(request, 'member_view.html')
 
 
 
