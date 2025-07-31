@@ -18,11 +18,11 @@ from django.contrib.auth.models import User
 #Automatic Creation: Use Django signals to automatically create a UserProfile when a new user is registered.
 
 class UserProfile(models.Model):
-    ROLE_CHOICES = [
+    ROLE_CHOICES = (
     ("Admin", "Admin"),
     ("Librarian", "Librarian"),
     ("Member", "Member"),
-    ]
+    )
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     role = models.CharField(max_length=50, choices=ROLE_CHOICES)
 
