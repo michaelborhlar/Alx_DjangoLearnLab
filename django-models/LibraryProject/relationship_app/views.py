@@ -20,9 +20,8 @@ def is_librarian(user):
 def is_member(user):
     return hasattr(user, 'userprofile') and user.userprofile.role == 'Member'
 
-
-@user_passes_test(is_admin)
 @login_required
+@user_passes_test(is_admin)
 def admin_view(request):
     return render(request, 'admin_view.html')
 
@@ -39,7 +38,7 @@ def member_view(request):
 
 
 class register(CreateView):
-    form_class=UserCreationForm()
+    form_class=UserCreationForm
     success_url=reverse_lazy('login')
     template_name="relationship_app/register.html"
 
