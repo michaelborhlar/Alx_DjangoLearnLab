@@ -11,40 +11,28 @@ from django.contrib.auth.decorators import user_passes_test, login_required
 from django.shortcuts import render
 from .models import UserProfile
 
+def is_admin(user):
+    return hasattr(user, 'userprofile') and user.userprofile.role == 'Admin'
 
+def is_librarian(user):
+    return hasattr(user, 'userprofile') and user.userprofile.role == 'Librarian'
+
+def is_member(user):
+    return hasattr(user, 'userprofile') and user.userprofile.role == 'Member'
+
+
+@user_passes_test(is_admin)
 @login_required
 def admin_view(request):
     return render(request, 'admin_view.html')
 
+@user_passes_test(is_librarian)
 @login_required
-def Admin(request):
-    # This view can only be accessed by authenticated users
-    return render(request, 'admin_view.html')
-
-@login_required
-def Librarian(request):
-    # This view can only be accessed by authenticated users
-    return render(request, 'librarian_view.html')
-
-@login_required
-def Member(request):
-    # This view can only be accessed by authenticated users
-    return render(request, 'member_view.html')
-
-
-
-def check_role(user, role):
-    return hasattr(user, 'userprofile') and user.userprofile.role == role
-
-@user_passes_test(lambda u: check_role(u, 'Admin'))
-def admin_view(request):
-    return render(request, 'admin_view.html')
-
-@user_passes_test(lambda u: check_role(u, 'Librarian'))
 def librarian_view(request):
     return render(request, 'librarian_view.html')
 
-@user_passes_test(lambda u: check_role(u, 'Member'))
+@user_passes_test(is_member)
+@login_required
 def member_view(request):
     return render(request, 'member_view.html')
 
