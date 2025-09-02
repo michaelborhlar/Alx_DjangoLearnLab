@@ -18,4 +18,15 @@ class Book(models.Model):
     def __str__(self):
         return self.title
 
+class UserProfile(models.Model):
+    roles = [
+        ('Admin', 'Admin') 
+        ('Librarian' , 'Librarian')
+        ('Member', 'Member')
+    ]
+    user = models.OneToOneField(User, on_delete= "CASCADE", related_name="user")
+    role = models.CharField(max_length=50, choices=roles)
+
+    def __str__(self):
+        return f"{self.user.username} ({self.role})"
 
