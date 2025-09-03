@@ -8,13 +8,13 @@ User = get_user_model()
 
 class RegisterSerializer(serializers.ModelSerializer):
 
-    password = serializers.Charfield(write_only=True, required=True)
+    password = serializers.Charfield()
     class Meta:
         model = User
         fields = "__all__"
 
         def create(self, validated_data):
-            user = get_user_model.object.create_user()
+            user = get_user_model().object.create_user()
 
             Token.objects.create(user=user)
             return user
