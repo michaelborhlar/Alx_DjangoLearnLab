@@ -14,7 +14,7 @@ class RegisterSerializer(serializers.ModelSerializer):
         fields = "__all__"
 
         def create(self, validated_data):
-            user=get_user_model().object.create_user
+            user=get_user_model().objects.create_user
 
             Token.objects.create(user=user)
             return user
